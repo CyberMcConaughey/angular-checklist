@@ -51,12 +51,15 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
     }
   }
 
-  // Удаление пункта по индексу
+  // Удаление пункта с подтверждением
   public removeItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
-      console.log("Удаляется пункт:", this.items[index].text);
-      this.items.splice(index, 1);
-      this.cdRef.detectChanges();
+      const confirmed = window.confirm(`Удалить пункт «${this.items[index].text}»?`);
+      if (confirmed) {
+        console.log("Удаляется пункт:", this.items[index].text);
+        this.items.splice(index, 1);
+        this.cdRef.detectChanges();
+      }
     }
   }
 
