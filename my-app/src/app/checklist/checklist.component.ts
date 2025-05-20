@@ -9,13 +9,13 @@ export interface ChecklistItem {
 }
 
 @Component({
-  selector: "app-angular-checklist",
+  selector: "usr-bpm-check-list",
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: "./angular-checklist.component.html",
-  styleUrls: ["./angular-checklist.component.css"],
+  templateUrl: "./UsrBPMCheckList.component.html",
+  styleUrls: ["./UsrBPMCheckList.component.css"],
 })
-export class AngularChecklistComponent implements OnInit, OnDestroy {
+export class UsrBPMCheckList implements OnInit, OnDestroy {
   // Субъект для управления отпиской
   private destroy$ = new Subject<void>();
 
@@ -28,8 +28,7 @@ export class AngularChecklistComponent implements OnInit, OnDestroy {
   constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    console.log("AngularChecklistComponent инициализирован");
-    // Здесь можно выполнить начальную загрузку данных или другие операции
+    console.log("UsrBPMCheckList инициализирован");
   }
 
   // Добавление нового пункта
@@ -64,6 +63,6 @@ export class AngularChecklistComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    console.log("AngularChecklistComponent уничтожен");
+    console.log("UsrBPMCheckList уничтожен");
   }
 }
