@@ -1,28 +1,69 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // добавляем импорт
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Subject } from "rxjs";
 
-interface ChecklistItem {
+export interface ChecklistItem {
   text: string;
   checked: boolean;
 }
 
 @Component({
-  selector: 'app-checklist',
+  selector: "app-angular-checklist",
   standalone: true,
-  imports: [CommonModule, FormsModule], // добавляем CommonModule
-  templateUrl: './checklist.component.html',
-  styleUrls: ['./checklist.component.css']
+  imports: [CommonModule, FormsModule],
+  templateUrl: "./angular-checklist.component.html",
+  styleUrls: ["./angular-checklist.component.css"],
 })
-export class ChecklistComponent {
-  items: ChecklistItem[] = [];
-  newItemText = '';
+export class AngularChecklistComponent implements OnInit, OnDestroy {
+  // Субъект для управления отпиской
+  private destroy$ = new Subject<void>();
 
-  addItem() {
-    const text = this.newItemText.trim(); // Убираем лишние пробелы
+  // Массив пунктов чек-листа
+  public items: ChecklistItem[] = [];
+
+  // Текст нового пункта
+  public newItemText: string = "";
+
+  constructor(private cdRef: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    console.log("AngularChecklistComponent инициализирован");
+    // Здесь можно выполнить начальную загрузку данных или другие операции
+  }
+
+  // Добавление нового пункта
+  public addItem(): void {
+    const text = this.newItemText.trim();
     if (text) {
-      this.items.push({ text, checked: false }); // Добавляем новый пункт
-      this.newItemText = ''; // Очищаем поле ввода
+      this.items.push({ text, checked: false });
+      this.newItemText = "";
+      this.cdRef.detectChanges();
+      console.log("Добавлен пункт:", text);
     }
+  }
+
+  // Переключение состояния выполнения пункта
+  public toggleItem(index: number): void {
+    if (index >= 0 && index < this.items.length) {
+      this.items[index].checked = !this.items[index].checked;
+      this.cdRef.detectChanges();
+      console.log("Изменено состояние пункта:", this.items[index]);
+    }
+  }
+
+  // Удаление пункта по индексу
+  public removeItem(index: number): void {
+    if (index >= 0 && index < this.items.length) {
+      console.log("Удаляется пункт:", this.items[index].text);
+      this.items.splice(index, 1);
+      this.cdRef.detectChanges();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    console.log("AngularChecklistComponent уничтожен");
   }
 }

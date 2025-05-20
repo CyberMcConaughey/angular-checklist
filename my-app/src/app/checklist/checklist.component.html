@@ -1,13 +1,18 @@
 <div>
   <h3>Чек-лист</h3>
   <ul>
-    <li *ngFor="let item of items" class="checklist-item">
+    <li *ngFor="let item of items; let i = index" class="checklist-item">
       <label>
-        <input type="checkbox" [(ngModel)]="item.checked">
+        <input type="checkbox" [(ngModel)]="item.checked" (change)="toggleItem(i)">
         <span [ngClass]="{'completed': item.checked}">{{ item.text }}</span>
       </label>
+      <button (click)="removeItem(i)" class="remove-btn">Удалить</button>
     </li>
   </ul>
-  <input type="text" [(ngModel)]="newItemText" placeholder="Новый пункт" (keyup.enter)="addItem()">
-  <button (click)="addItem()">Добавить</button>
+  <input 
+    type="text" 
+    [(ngModel)]="newItemText" 
+    placeholder="Новый пункт" 
+    (keyup.enter)="addItem()">
+  <button (click)="addItem()" class="add-btn">Добавить</button>
 </div>
