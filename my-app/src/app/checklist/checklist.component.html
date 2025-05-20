@@ -4,10 +4,11 @@
     <li *ngFor="let item of items">
       <label>
         <input type="checkbox" [(ngModel)]="item.checked">
-        {{ item.text }}
+        <span [ngClass]="{'completed': item.checked}">{{ item.text }}</span>
       </label>
     </li>
   </ul>
-  <input [(ngModel)]="newItemText" placeholder="Новый пункт" (keyup.enter)="addItem()">
+  <!-- Добавил type="text" для поля ввода -->
+  <input type="text" [(ngModel)]="newItemText" placeholder="Новый пункт" (keyup.enter)="addItem()">
   <button (click)="addItem()">Добавить</button>
 </div>
