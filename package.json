@@ -8,5 +8,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyberMcConaughey/angular-checklist.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CyberMcConaughey/angular-checklist/issues"
+  },
+  "homepage": "https://github.com/CyberMcConaughey/angular-checklist#readme",
   "description": ""
 }
