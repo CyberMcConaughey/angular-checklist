@@ -12,17 +12,13 @@ export interface ChecklistItem {
   selector: "usr-bpm-check-list",
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: "./UsrBPMCheckList.component.html",
-  styleUrls: ["./UsrBPMCheckList.component.css"],
+  templateUrl: "./checklist.component.html",
+  styleUrls: ["./checklist.component.css"],
 })
 export class UsrBPMCheckList implements OnInit, OnDestroy {
-  // Субъект для управления отпиской
   private destroy$ = new Subject<void>();
 
-  // Массив пунктов чек-листа
   public items: ChecklistItem[] = [];
-
-  // Текст нового пункта
   public newItemText: string = "";
 
   constructor(private cdRef: ChangeDetectorRef) {}
@@ -31,7 +27,6 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
     console.log("UsrBPMCheckList инициализирован");
   }
 
-  // Добавление нового пункта
   public addItem(): void {
     const text = this.newItemText.trim();
     if (text) {
@@ -42,7 +37,6 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
     }
   }
 
-  // Переключение состояния выполнения пункта
   public toggleItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
       this.items[index].checked = !this.items[index].checked;
@@ -51,7 +45,6 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
     }
   }
 
-  // Удаление пункта с подтверждением
   public removeItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
       const confirmed = window.confirm(`Удалить пункт «${this.items[index].text}»?`);
