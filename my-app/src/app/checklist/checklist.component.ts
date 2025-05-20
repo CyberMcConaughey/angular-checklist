@@ -9,16 +9,20 @@ export interface ChecklistItem {
 }
 
 @Component({
-  selector: "usr-bpm-check-list",
+  selector: "UsrBPMCheckList",
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: "./checklist.component.html",
-  styleUrls: ["./checklist.component.css"],
+  templateUrl: "./UsrBPMCheckList.component.html",
+  styleUrls: ["./UsrBPMCheckList.component.scss"],
 })
 export class UsrBPMCheckList implements OnInit, OnDestroy {
+  // Субъект для управления отпиской
   private destroy$ = new Subject<void>();
 
+  // Массив пунктов чек-листа
   public items: ChecklistItem[] = [];
+
+  // Текст нового пункта
   public newItemText: string = "";
 
   constructor(private cdRef: ChangeDetectorRef) {}
@@ -27,6 +31,7 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
     console.log("UsrBPMCheckList инициализирован");
   }
 
+  // Добавление нового пункта
   public addItem(): void {
     const text = this.newItemText.trim();
     if (text) {
@@ -37,22 +42,21 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
     }
   }
 
+  // Переключение состояния выполнения пункта
   public toggleItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
-      this.items[index].checked = !this.items[index].checked;
-      this.cdRef.detectChanges();
+      //  this.items[index].checked = !this.items[index].checked;
+      //      this.cdRef.detectChanges();
       console.log("Изменено состояние пункта:", this.items[index]);
     }
   }
 
+  // Удаление пункта по индексу
   public removeItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
-      const confirmed = window.confirm(`Удалить пункт «${this.items[index].text}»?`);
-      if (confirmed) {
-        console.log("Удаляется пункт:", this.items[index].text);
-        this.items.splice(index, 1);
-        this.cdRef.detectChanges();
-      }
+      console.log("Удаляется пункт:", this.items[index].text);
+      this.items.splice(index, 1);
+      this.cdRef.detectChanges();
     }
   }
 
