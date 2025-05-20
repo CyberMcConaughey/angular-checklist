@@ -51,7 +51,7 @@ input[type="text"] {
 button {
   padding: 10px;
   font-size: 16px;
-  background-color: #FFA500; /* Оранжевый */
+  background-color: #f9773d; /* Новый оранжевый цвет кнопки */
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -59,7 +59,7 @@ button {
 }
 
 button:hover {
-  background-color: #e69500; /* Чуть темнее */
+  background-color: #e06c33; /* Немного темнее для hover */
 }
 
 /* Выделение выполненных пунктов */
