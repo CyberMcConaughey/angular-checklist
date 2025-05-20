@@ -1,14 +1,13 @@
 <div>
   <h3>Чек-лист</h3>
   <ul>
-    <li *ngFor="let item of items">
+    <li *ngFor="let item of items" class="checklist-item">
       <label>
         <input type="checkbox" [(ngModel)]="item.checked">
         <span [ngClass]="{'completed': item.checked}">{{ item.text }}</span>
       </label>
     </li>
   </ul>
-  <!-- Добавил type="text" для поля ввода -->
   <input type="text" [(ngModel)]="newItemText" placeholder="Новый пункт" (keyup.enter)="addItem()">
   <button (click)="addItem()">Добавить</button>
 </div>

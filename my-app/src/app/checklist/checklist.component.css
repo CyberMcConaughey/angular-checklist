@@ -7,12 +7,16 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Golos Regular', sans-serif; /* Базовый шрифт */
 }
 
 h3 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Golos Regular', sans-serif;
 }
 
 ul {
@@ -21,45 +25,32 @@ ul {
   margin-bottom: 20px;
 }
 
-li {
+/* Отдельное оформление для каждого пункта */
+.checklist-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
   margin-bottom: 10px;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
 }
 
-input[type="checkbox"] {
+.checklist-item label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Настройки для чекбокса внутри пункта */
+.checklist-item input[type="checkbox"] {
   margin-right: 10px;
 }
 
-/* Поле ввода и кнопка занимают 100% ширины контейнера, с учетом padding и границ */
-input[type="text"],
-button {
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-}
-
-/* Настройки поля ввода */
-input[type="text"] {
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px; /* Отступ между полем и кнопкой */
-}
-
-/* Настройки кнопки */
-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #f9773d; /* Новый оранжевый цвет кнопки */
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #e06c33; /* Немного темнее для hover */
+/* Настройки текста пункта (обычный размер 12px) */
+.checklist-item span {
+  flex-grow: 1;
+  font-size: 12px;
 }
 
 /* Выделение выполненных пунктов */
@@ -67,4 +58,38 @@ button:hover {
   color: green;
   font-weight: bold;
   text-decoration: line-through;
+}
+
+/* Поле ввода и кнопка занимают 100% ширины контейнера с учетом padding и границ */
+input[type="text"],
+button {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Настройки поля ввода (обычный размер 12px) */
+input[type="text"] {
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Настройки кнопки (текст 14px, жирный) */
+button {
+  padding: 10px;
+  font-size: 14px; /* изменено с 20px на 14px */
+  font-weight: bold;
+  background-color: #f9773d; /* Оранжевый цвет */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Golos Regular', sans-serif;
+}
+
+button:hover {
+  background-color: #e06c33;
 }
