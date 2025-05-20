@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { AngularChecklistComponent } from './checklist/checklist.component'; // Импортируем AngularChecklistComponent
+import { UsrBPMCheckList } from './checklist/checklist.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AngularChecklistComponent], // Добавляем AngularChecklistComponent в imports
+  imports: [UsrBPMCheckList],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
