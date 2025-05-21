@@ -1,18 +1,48 @@
-<div>
-  <h3>UsrBPM Check List</h3>
-  <ul>
-    <li *ngFor="let item of items; let i = index" class="checklist-item">
-      <label>
+<div class="checklist-container">
+  <h3 class="checklist-title">UsrBPM Check List</h3>
+  <ul class="checklist-list">
+    <li *ngFor="let item of items; let i = index"
+        class="checklist-item"
+        [class.drag-over]="overIndex === i"
+        draggable="true"
+        (dragstart)="dragStart(i)"
+        (dragover)="dragOver(i, $event)"
+        (drop)="drop(i)"
+        (dragend)="dragEnd()">
+      <label class="checklist-label">
         <input type="checkbox" [(ngModel)]="item.checked" (change)="toggleItem(i)">
-        <span [ngClass]="{'completed': item.checked}">{{ item.text }}</span>
+        <span [ngClass]="{'completed': item.checked}">
+          <ng-container *ngIf="!item.editing; else editBlock">{{ item.text }}</ng-container>
+          <ng-template #editBlock>
+            <textarea [(ngModel)]="editText"
+                      (keyup.enter)="saveEdit(i)"
+                      (blur)="saveEdit(i)"
+                      class="edit-textarea"
+                      rows="2"
+                      autofocus></textarea>
+            <button class="edit-save-btn" (click)="saveEdit(i)" type="button">&#10003;</button>
+            <button class="edit-cancel-btn" (click)="cancelEdit(i)" type="button">&#10005;</button>
+          </ng-template>
+        </span>
       </label>
-      <button (click)="removeItem(i)" class="remove-btn">Удалить</button>
+      <button (click)="editItem(i)" class="edit-btn" title="Редактировать">
+        <span class="material-icons">edit</span>
+      </button>
+      <button (click)="removeItem(i)" class="remove-btn" title="Удалить">
+        <span class="material-icons">close</span>
+      </button>
     </li>
   </ul>
-  <input 
-    type="text" 
-    [(ngModel)]="newItemText" 
-    placeholder="Новый пункт" 
-    (keyup.enter)="addItem()">
-  <button (click)="addItem()" class="add-btn">Добавить</button>
+  <div class="checklist-actions" *ngIf="!allCompleted(); else finishBlock">
+    <textarea
+      [(ngModel)]="newItemText"
+      placeholder="Новый пункт"
+      class="new-item-textarea"
+      rows="2"
+      (keyup.enter)="addItem()"></textarea>
+    <button (click)="addItem()" class="add-btn">Добавить</button>
+  </div>
+  <ng-template #finishBlock>
+    <button class="finish-btn" (click)="finish()">Завершить</button>
+  </ng-template>
 </div>
