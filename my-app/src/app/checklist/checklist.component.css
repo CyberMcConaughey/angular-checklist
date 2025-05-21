@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: #f3f3f3; /* Серый фон страницы */
 }
 
 .checklist-container {
@@ -30,10 +30,10 @@ html, body {
 }
 
 .checklist-item {
-  background: #f3f3f3; /* Светло-серый фон пункта */
+  background: #fff; /* Белый фон пункта */
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 10px 12px; /* Внутренние отступы */
+  padding: 10px 12px;
   margin-bottom: 6px;
   display: flex;
   align-items: center;
@@ -74,7 +74,29 @@ html, body {
   text-decoration: line-through;
 }
 
-.edit-btn, .remove-btn, .edit-save-btn, .edit-cancel-btn {
+/* Кнопки "Редактировать" и "Удалить" — текстом, курсив, цвет #6687bd */
+.edit-btn, .remove-btn {
+  font-style: italic;
+  color: #6687bd;
+  font-size: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 8px;
+  margin-left: 2px;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+}
+
+.edit-btn:hover, .remove-btn:hover {
+  color: #3b5a8c;
+  text-decoration: underline;
+}
+
+/* Кнопки галочка и крестик при редактировании */
+.edit-save-btn, .edit-cancel-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -89,11 +111,18 @@ html, body {
   height: 28px;
 }
 
-.edit-btn:hover, .edit-save-btn:hover {
+.edit-save-btn:hover {
   color: #1976d2;
 }
-.remove-btn:hover, .edit-cancel-btn:hover {
+.edit-cancel-btn:hover {
   color: #d32f2f;
+}
+
+/* Галочка и крестик на одной строке с textarea */
+.edit-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .material-icons {
