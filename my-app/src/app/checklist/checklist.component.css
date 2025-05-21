@@ -102,8 +102,8 @@
   text-transform: none;
   display: inline-block;
   direction: ltr;
--webkit-font-feature-settings: 'liga';
-font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
 
@@ -122,7 +122,7 @@ font-feature-settings: 'liga';
 .checklist-actions {
   display: flex;
   gap: 8px;
-  align-items: flex-start;
+  align-items: center; /* Центрирование кнопки "Добавить" по вертикали */
 }
 
 .new-item-textarea {
