@@ -32,7 +32,7 @@
   padding: 6px 6px 6px 0;
   margin-bottom: 6px;
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* ВЫРАВНИВАНИЕ ПО ВЕРТИКАЛИ */
   transition: background 0.2s;
   min-height: 38px;
   word-break: break-word;
@@ -45,7 +45,7 @@
 
 .checklist-label {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   flex: 1;
   gap: 8px;
@@ -80,6 +80,9 @@
   color: #888;
   transition: color 0.2s;
   vertical-align: middle;
+  display: flex;
+  align-items: center;
+  height: 28px;
 }
 
 .edit-btn:hover, .edit-save-btn:hover {
