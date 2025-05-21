@@ -40,8 +40,8 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
 
   public toggleItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
-      this.items[index].checked = !this.items[index].checked;
-      this.cdRef.detectChanges();
+     // this.items[index].checked = !this.items[index].checked;
+      //this.cdRef.detectChanges();
     }
   }
 
