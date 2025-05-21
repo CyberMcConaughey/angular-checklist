@@ -10,13 +10,13 @@ export interface ChecklistItem {
 }
 
 @Component({
-  selector: "usr-bpm-check-list",
+  selector: "UsrAngularCheck",
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: "./checklist.component.html",
-  styleUrls: ["./checklist.component.css"],
+  templateUrl: "./UsrAngularCheck.component.html",
+  styleUrls: ["./UsrAngularCheck.component.scss"],
 })
-export class UsrBPMCheckList implements OnInit, OnDestroy {
+export class UsrAngularCheck implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   public items: ChecklistItem[] = [];
@@ -40,7 +40,7 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
 
   public toggleItem(index: number): void {
     if (index >= 0 && index < this.items.length) {
-     // this.items[index].checked = !this.items[index].checked;
+      // this.items[index].checked = !this.items[index].checked;
       //this.cdRef.detectChanges();
     }
   }
@@ -53,7 +53,7 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
   }
 
   public editItem(index: number): void {
-    this.items.forEach((item, i) => item.editing = false);
+    this.items.forEach((item, i) => (item.editing = false));
     this.items[index].editing = true;
     this.editText = this.items[index].text;
     this.cdRef.detectChanges();
@@ -100,7 +100,7 @@ export class UsrBPMCheckList implements OnInit, OnDestroy {
   }
 
   public allCompleted(): boolean {
-    return this.items.length > 0 && this.items.every(item => item.checked);
+    return this.items.length > 0 && this.items.every((item) => item.checked);
   }
 
   public finish(): void {
